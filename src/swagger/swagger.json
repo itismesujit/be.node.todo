@@ -1,0 +1,333 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Todo back-end API with swagger",
+    "version": "1.0",
+    "title": "Todo back-end API with swagger",
+    "termsOfService": "Terms of service",
+    "license": {
+      "name": "Apache License Version 2.0"
+    }
+  },
+  "host": "localhost:8000",
+  "basePath": "/",
+  "tags": [
+    "todos-controller"
+  ],
+  "paths": {
+    "/todos/v1/getById/{postId}": {
+      "get": {
+        "tags": [
+          "todos-controller"
+        ],
+        "summary": "API to get single posts by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "postId",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Posts fetched successfully.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "You are unauthorized !!!"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "No record(s) found"
+          },
+          "500": {
+            "description": "Internal Server Error !!!"
+          }
+        }
+      }
+    },
+    "/todos/v1/get": {
+      "get": {
+        "tags": [
+          "todos-controller"
+        ],
+        "summary": "API to get data of users",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "User(s) fetched successfully.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "You are unauthorized !!!"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "No record(s) found"
+          },
+          "500": {
+            "description": "Internal Server Error !!!"
+          }
+        }
+      }
+    },
+    "/todos/v1/add": {
+      "post": {
+        "tags": [
+          "todos-controller"
+        ],
+        "summary": "API to add data from pbooks",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/payloadTodoAdd"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Book added successfully.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "You are unauthorized !!!"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "No record(s) found"
+          },
+          "500": {
+            "description": "Internal Server Error !!!"
+          }
+        }
+      }
+    },
+    "/todos/v1/update": {
+      "put": {
+        "tags": [
+          "todos-controller"
+        ],
+        "summary": "API to update todo from todos",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/payloadTodoUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Todo updated successfully.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "You are unauthorized !!!"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "No record(s) found"
+          },
+          "500": {
+            "description": "Internal Server Error !!!"
+          }
+        }
+      }
+    },
+    "/todos/v1/partialUpdate": {
+      "patch": {
+        "tags": [
+          "todos-controller"
+        ],
+        "summary": "API to update partially todo from todos",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/payloadTodoUpdatePartially"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Todo updated successfully.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "You are unauthorized !!!"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "No record(s) found"
+          },
+          "500": {
+            "description": "Internal Server Error !!!"
+          }
+        }
+      }
+    },
+    "/todos/v1/delete": {
+      "delete": {
+        "tags": [
+          "todos-controller"
+        ],
+        "summary": "API to delete todo",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Todo deleted successfully.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "You are unauthorized !!!"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "No record(s) found"
+          },
+          "500": {
+            "description": "Internal Server Error !!!"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "payloadTodoAdd": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "number",
+          "example": 3
+        },
+        "title": {
+          "type": "string",
+          "example": "Buy salt"
+        },
+        "completed": {
+          "type": "boolean",
+          "example": "true"
+        }
+      },
+      "required": [
+        "userId",
+        "title",
+        "completed"
+      ]
+    },
+    "payloadTodoUpdate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 2
+        },
+        "userId": {
+          "type": "number",
+          "example": 3
+        },
+        "title": {
+          "type": "string",
+          "example": "Buy salt"
+        },
+        "completed": {
+          "type": "boolean",
+          "example": "true"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "title",
+        "completed"
+      ]
+    },
+    "payloadTodoUpdatePartially": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 2
+        },
+        "title": {
+          "type": "string",
+          "example": "Buy salt"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "errorsPayload": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "number",
+          "example": 404
+        },
+        "message": {
+          "type": "string",
+          "example": "Book not found"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ]
+    }
+  }
+}

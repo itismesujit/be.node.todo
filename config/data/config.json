@@ -1,0 +1,11 @@
+{
+  "swagger": {
+    "host": "localhost:8000",
+    "basePath": "/",
+    "schemes": [
+      "http"
+    ],
+    "syntaxHighlight": false
+  },
+  "appMgmt": {}
+}
